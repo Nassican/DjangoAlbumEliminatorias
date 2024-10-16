@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block section %}
+   <h2>
+       {{ object.first_name }} {{ object.last_name }} <br>
+       <h3>
+        Altura: {{ object.height }} <br>
+        Peso: {{ object.weight }}
+       </h3>
+       
+       {% if object.player_id %}
+         ( <a href="{% url "player-detail" object.player_id %}">
+             {{ object.player }}
+           </a> )
+       {% endif %}
+    </h2>
+    <p><strong>comments: </strong>{{ object.comment|default:"no comments" }}</p>
+   <hr>
+{% endblock section %}
+
+{% block maincontent %}
+<div>
+ <div>
+     <img src="{% static object.photo.url %}" style="width:250px;height:330px" />
+ </div>
+</div>
+{% endblock maincontent %}

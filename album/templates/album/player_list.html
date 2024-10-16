@@ -1,1 +1,17 @@
-<h1>{{ object_list }}</h1>
+{% extends 'base.html' %}
+
+{% block section %}
+	 <h2>Player</h2>
+	 <hr>
+{% endblock section %}
+
+{% block maincontent %}
+   <div>
+
+      {% for c in object_list %}
+         <a href="{% url 'player-detail' c.pk %}">
+              {{ c.first_name }} <br>
+         </a>
+      {% endfor %}
+    </div>
+{% endblock maincontent %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block section %}
+   <h2>
+       {{ object.first_name }} {{ object.last_name }}
+       {% if object.team_id %}
+         ( <a href="{% url "team-detail" object.team_id %}">
+             {{ object.team }}
+           </a> )
+       {% endif %}
+    </h2>
+    <p><strong>comments: </strong>{{ object.comment|default:"no comments" }}</p>
+   <hr>
+{% endblock section %}
+
+{% block maincontent %}
+<div>
+ <div>
+     <img src="{% static object.shield.url %}" style="width:250px;height:330px" />
+ </div>
+</div>
+{% endblock maincontent %}
