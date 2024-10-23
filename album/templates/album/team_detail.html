@@ -3,6 +3,16 @@
 {% load static %}
 
 {% block section %}
+    <a href="{% url 'team-update' object.id %}" 
+        class="btn btn-primary btn-sm rounded-pill shadow-sm">
+        <i class="fas fa-edit me-1"></i> Edit
+    </a>
+
+    <a href="{% url 'team-delete' object.id %}" 
+        class="btn btn-danger btn-sm rounded-pill shadow-sm">
+        <i class="fas fa-trash-alt me-1"></i> Delete
+    </a>
+
    <h2>
        {{ object.first_name }} {{ object.last_name }}
        {% if object.team_id %}

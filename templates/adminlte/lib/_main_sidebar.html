@@ -34,34 +34,46 @@
             <li class="nav-header">{% block nav_heading %}MAIN NAVIGATION{% endblock %}</li>
 
             {% block nav_links %}
-                <li class="nav-item">
-                    <a href="{% url "team-list" %}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i> 
-                        <p>Team</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                        <a href="{% url "player-list" %}" class="nav-link active">
-                            <i class="nav-icon fas fa-tachometer-alt"></i> 
-                            <p>Players</p>
-                        </a>
-                    </li>
+                
+                
                 <li class="nav-item has-tree-view ">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-object-group"></i> <p>Sub menu</p>
+                        <i class="nav-icon fas fa-object-group"></i> <p>Team</p>
                         <p><i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview menu-open">
                             <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-circle"></i> link
+                                    <a href="{% url 'team-list' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-circle"></i> List
+                                    </a>
+                                    <a href="{% url 'team-create' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-user"></i> Create
                                     </a>
                                 </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-user"></i> Another link
-                            </a>
+                            
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-tree-view ">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-object-group"></i> <p>Player</p>
+                        <p><i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview menu-open">
+                            <li class="nav-item">
+                                    <a href="{% url 'player-list' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-circle"></i> List
+                                    </a>
+                                    <a href="{% url 'player-create' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-user"></i> Create
+                                    </a>
+                                </li>
+                        <li class="nav-item">
+                            
                         </li>
                     </ul>
                 </li>

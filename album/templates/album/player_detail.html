@@ -1,29 +1,39 @@
-{% extends 'base.html' %}
-
-{% load static %}
-
-{% block section %}
-   <h2>
-       {{ object.first_name }} {{ object.last_name }} <br>
-       <h3>
-        Altura: {{ object.height }} <br>
-        Peso: {{ object.weight }}
-       </h3>
-       
-       {% if object.player_id %}
-         ( <a href="{% url "player-detail" object.player_id %}">
-             {{ object.player }}
-           </a> )
-       {% endif %}
-    </h2>
-    <p><strong>comments: </strong>{{ object.comment|default:"no comments" }}</p>
-   <hr>
-{% endblock section %}
-
-{% block maincontent %}
-<div>
- <div>
-     <img src="{% static object.photo.url %}" style="width:250px;height:330px" />
- </div>
+{% extends 'base.html' %} {% load static %} {% block section %}
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">{{ object.first_name }} {{ object.last_name }}</h2>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <img
+            src="{% static object.photo.url %}"
+            class="img-fluid rounded"
+            alt="Foto jugador"
+          />
+        </div>
+        <div class="col-md-8">
+          <h4 class="text-primary">Información del Jugador</h4>
+          <hr />
+          <div class="row">
+            <div class="col-md-6">
+              <p><strong>Equipo:</strong> {{ object.team.name }}</p>
+              <p><strong>Altura:</strong> {{ object.height }} m</p>
+              <p><strong>Peso:</strong> {{ object.weight }} kg</p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Comentarios:</strong></p>
+              <p>{{ object.comment|default:"Sin comentarios" }}</p>
+            </div>
+          </div>
+          <div class="mt-3">
+            <a href="{% url 'player-update' object.pk %}" class="btn btn-primary mr-2">Update</a>
+            <a href="{% url 'player-delete' object.pk %}" class="btn btn-danger">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-{% endblock maincontent %}
+{% endblock section %}

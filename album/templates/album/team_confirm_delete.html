@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block maincontent %}
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-danger text-white">
+            <h3 class="mb-0">Confirmar eliminación</h3>
+        </div>
+        <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                <p class="lead">¿Estás seguro de que deseas eliminar el equipo: <strong>{{ object.name }}</strong>?</p>
+                <p class="text-muted">Esta acción no se puede deshacer.</p>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash-alt mr-2"></i> Confirmar eliminación
+                    </button>
+                    <a href="{% url 'team-list' %}" class="btn btn-secondary ml-2">
+                        <i class="fas fa-times mr-2"></i> Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock maincontent %}
