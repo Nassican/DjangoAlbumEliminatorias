@@ -22,7 +22,6 @@
                 class="form-control"
                 id="{{ form.name.id_for_label }}"
                 required
-                value="{{ form.instance.name|default:'' }}"
               />
             </div>
           </div>
@@ -38,21 +37,14 @@
                   class="form-control form-control-file d-none"
                   name="shield"
                   id="{{ form.shield.id_for_label }}"
-                  {%
-                  if
-                  not
-                  form.instance.pk
-                  %}required{%
-                  endif
-                  %}
+                  required
                   accept="image/*"
                 />
                 <label
                   class="form-control text-truncate"
                   for="{{ form.shield.id_for_label }}"
                 >
-                  {% if form.instance.shield %} Escudo seleccionado {% else %}
-                  Seleccionar imagen... {% endif %}
+                  Seleccionar imagen...
                 </label>
                 <label
                   class="input-group-text"
@@ -61,16 +53,9 @@
                   <i class="fas fa-upload"></i>
                 </label>
               </div>
-              {% if form.instance.shield %}
-              <small class="form-text text-info"
-                >Ya existe una imagen. Seleccione una nueva solo si desea
-                cambiarla.</small
-              >
-              {% else %}
               <small class="form-text text-muted"
                 >Seleccione una imagen para el escudo</small
               >
-              {% endif %}
             </div>
           </div>
           <div class="col-md-6 mb-3">
@@ -85,21 +70,14 @@
                   class="form-control form-control-file d-none"
                   name="team"
                   id="{{ form.team.id_for_label }}"
-                  {%
-                  if
-                  not
-                  form.instance.pk
-                  %}required{%
-                  endif
-                  %}
+                  required
                   accept="image/*"
                 />
                 <label
                   class="form-control text-truncate"
                   for="{{ form.team.id_for_label }}"
                 >
-                  {% if form.instance.team %} Foto Seleccionada {% else %}
-                  Seleccionar imagen... {% endif %}
+                  Seleccionar imagen...
                 </label>
                 <label
                   class="input-group-text"
@@ -108,16 +86,9 @@
                   <i class="fas fa-upload"></i>
                 </label>
               </div>
-              {% if form.instance.team %}
-              <small class="form-text text-info"
-                >Ya existe una imagen. Seleccione una nueva solo si desea
-                cambiarla.</small
-              >
-              {% else %}
               <small class="form-text text-muted"
                 >Seleccione una imagen del equipo</small
               >
-              {% endif %}
             </div>
           </div>
         </div>
@@ -133,4 +104,16 @@
     </div>
   </div>
 </div>
-{% endblock maincontent %}
+{% endblock maincontent %} {% block extra_js %}
+<script>
+  document.querySelectorAll('input[type="file"]').forEach(function (input) {
+    input.addEventListener("change", function (e) {
+      var fileName = e.target.files[0]
+        ? e.target.files[0].name
+        : "Seleccionar imagen...";
+      var label = e.target.nextElementSibling;
+      label.textContent = fileName;
+    });
+  });
+</script>
+{% endblock %}

@@ -51,6 +51,7 @@
         </li>
 
         {% block nav_links %}
+
         <li class="nav-item has-tree-view">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-object-group"></i>
@@ -59,13 +60,17 @@
           </a>
           <ul class="nav nav-treeview menu-open">
             <li class="nav-item">
-              <a href="{% url "team-list" %}" class="nav-link">Listar</a>
+              <a href="{% url 'team-list' %}" class="nav-link">
+                <i class="nav-icon fas fa-circle"></i> List
+              </a>
+              <a href="{% url 'team-create' %}" class="nav-link">
+                <i class="nav-icon fas fa-user"></i> Create
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="{% url "team-create" %}" class="nav-link">Crear</a>
-            </li>
+            <li class="nav-item"></li>
           </ul>
         </li>
+
         <li class="nav-item has-tree-view">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-object-group"></i>
@@ -74,11 +79,14 @@
           </a>
           <ul class="nav nav-treeview menu-open">
             <li class="nav-item">
-              <a href="{% url "player-list" %}" class="nav-link">Listar</a>
+              <a href="{% url 'player-list' %}" class="nav-link">
+                <i class="nav-icon fas fa-circle"></i> List
+              </a>
+              <a href="{% url 'player-create' %}" class="nav-link">
+                <i class="nav-icon fas fa-user"></i> Create
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="{% url "player-create" %}" class="nav-link">Crear</a>
-            </li>
+            <li class="nav-item"></li>
           </ul>
         </li>
         {% endblock nav_links %} {% endblock nav_links_outer %}

@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from album.models import Team, Player
 from django.urls import reverse_lazy
-from django.contrib import messages
 
 # Create your views here.
 class TeamListView(ListView):
@@ -16,44 +15,27 @@ class TeamDetailView(DetailView):
 
 class PlayerDetailView(DetailView):
     model = Player
-    
-class TeamCreateView(CreateView):
+
+class TeamCreate(CreateView):
     model = Team
     fields = '__all__'
 
-
-class PlayerCreateView(CreateView):
+class PlayerCreate(CreateView):
     model = Player
     fields = '__all__'
 
-class TeamUpdateView(UpdateView):
+class TeamUpdate(UpdateView):
     model = Team
     fields = '__all__'
-    template_name = 'album/team_form.html'
 
-class PlayerUpdateView(UpdateView):
+class TeamDelete(DeleteView):
+    model = Team
+    succes_url = reverse_lazy('team-list')
+
+class PlayerUpdate(UpdateView):
     model = Player
     fields = '__all__'
-    template_name = 'album/player_form.html'
 
-
-class TeamDeleteView(DeleteView):
-    model = Team
-    success_url = reverse_lazy('team-list')
-    
-    def delete(self, request, *args, **kwargs):
-        team = self.get_object()
-        messages.success(request, f'El equipo "{team.name}" ha sido eliminado exitosamente.')
-        return super().delete(request, *args, **kwargs)
-
-class PlayerDeleteView(DeleteView):
+class PlayerDelete(DeleteView):
     model = Player
-    success_url = reverse_lazy('player-list')
-    
-    def delete(self, request, *args, **kwargs):
-        player = self.get_object()
-        messages.success(request, f'El jugador "{player.first_name} {player.last_name}" ha sido eliminado exitosamente.')
-        return super().delete(request, *args, **kwargs)
-
-class HomeView(TemplateView):
-    template_name = 'base.html'
+    succes_url = reverse_lazy('player-list')

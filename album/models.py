@@ -37,12 +37,13 @@ class Player(models.Model):
     def get_absolute_url(self):
         return reverse('player-list')
     
-    
-@receiver(post_delete, sender=Player)
-def delete_player(sender, instance, **kwargs):
-    instance.photo.delete(False)
-    
 @receiver(post_delete, sender=Team)
-def delete_team(sender, instance, **kwargs):
-    instance.team.delete(False)
-    instance.shield.delete(False)
+def team_delete(sender, instance, **kwargs):
+     """ Borra los ficheros de las fotos que se eliminan. """
+     instance.shield.delete(False)
+     instance.team.delete(False)
+
+@receiver(post_delete, sender=Player)
+def player_delete(sender, instance, **kwargs):
+     """ Borra los ficheros de las fotos que se eliminan. """
+     instance.photo.delete(False)
