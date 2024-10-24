@@ -1,54 +1,38 @@
 {% extends 'base.html' %} {% load static %} {% block section %}
-<div class="container mt-5">
-  <h2 class="text-center mb-4">Teams</h2>
-  <div class="row">
-    <div class="col-12">
-      <div class="card shadow-sm">
+<h2 class="text-center mb-4">Equipos Participantes</h2>
+<hr />
+{% endblock section %} {% block maincontent %}
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for c in object_list %}
+    <div class="col mt-3 mb-3">
+      <div class="card h-100">
+        <div class="card-header">
+          <h5 class="card-title text-center">{{ c.name }}</h5>
+        </div>
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-hover align-middle">
-              <thead class="table-dark">
-                <tr>
-                  <th scope="col">Shield</th>
-                  <th scope="col">Logo</th>
-                  <th scope="col">Team Name</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for c in object_list %}
-                <tr>
-                  <td>
-                    <img
-                      src="{% static c.shield.url %}"
-                      class="img-fluid rounded-circle"
-                      style="width: 60px; height: 60px; object-fit: cover"
-                      alt="{{ c.name }} shield"
-                    />
-                  </td>
-                  <td>
-                    <img
-                      src="{% static c.team.url %}"
-                      class="img-fluid"
-                      style="width: 120px; height: 60px; object-fit: contain"
-                      alt="{{ c.name }} logo"
-                    />
-                  </td>
-                  <td>
-                    <a
-                      href="{% url 'team-detail' c.pk %}"
-                      class="text-decoration-none text-dark"
-                    >
-                      <h5 class="mb-0">{{ c.name }}</h5>
-                    </a>
-                  </td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
+          <a href="{% url 'team-detail' c.pk %}" class="text-decoration-none">
+            <div class="text-center mb-3">
+              <img
+                src="{% static c.shield.url %}"
+                class="img-fluid rounded"
+                alt="Escudo"
+                style="max-height: 200px"
+              />
+            </div>
+            <div class="text-center">
+              <img
+                src="{% static c.team.url %}"
+                class="img-fluid rounded"
+                alt="Equipo"
+                style="max-height: 200px"
+              />
+            </div>
+          </a>
         </div>
       </div>
     </div>
+    {% endfor %}
   </div>
 </div>
-{% endblock section %} {% block maincontent %}{% endblock maincontent %}
+{% endblock maincontent %}
