@@ -1,15 +1,45 @@
-{% extends 'adminlte/base.html' %}
+{% extends 'adminlte/base.html' %} {% block title %}Album Eliminatorias al
+Mundial 2026{% endblock %} {% block bodyclass %}sidebar-mini layout-fixed
+layout-navbar-fixed{% endblock %} {% block content %}
+<div class="content-wrapper">
+  <section class="content-header">
+    {% block section %}
+    <div class="container">
+      <h1 class="text-center mb-4">Album de Eliminatorias Mundial 2026</h1>
+      <hr />
+    </div>
+    {% endblock section %}
+  </section>
 
-{% block title %}Album Eliminatorias al Mundial 2026{% endblock %}
-{% block bodyclass %} skin-red {% endblock %}
-{% block content %}
+  <section class="content">
+    {% block maincontent %}
     <div class="container">
-        {% block section %}
-        {% endblock section %}
+      <div class="jumbotron text-center">
+        <h2>Bienvenido al Sistema de Gestión</h2>
+        <p class="lead">
+          Aquí podrás administrar los equipos y jugadores de las eliminatorias
+        </p>
+      </div>
+      {% if messages %}
+      <div class="container mt-3">
+        {% for message in messages %}
+        <div
+          class="alert alert-{{ message.tags }} alert-dismissible fade show"
+          role="alert"
+        >
+          {{ message }}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
     </div>
-    <div class="container">
-        {% block maincontent %}
-        {% endblock maincontent %}
-    </div>
-  
-{% endblock %}
+    {% endblock maincontent %}
+  </section>
+</div>
+{% endblock content %}

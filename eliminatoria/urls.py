@@ -19,9 +19,19 @@ from django.urls import path
 from album import views
 
 urlpatterns = [
+    path('', views.HomeView.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('team/', views.TeamListView.as_view(),name="team-list"),
     path('player/', views.PlayerListView.as_view(),name="player-list"),
     path('team/<int:pk>/detail/', views.TeamDetailView.as_view(),name="team-detail"),
     path('player/<int:pk>/detail/', views.PlayerDetailView.as_view(),name="player-detail"),
+    # CREATE
+    path('team/create/', views.TeamCreateView.as_view(),name="team-create"),
+    path('player/create/', views.PlayerCreateView.as_view(),name="player-create"),
+    # UPDATE
+    path('team/<int:pk>/update/', views.TeamUpdateView.as_view(),name="team-update"),
+    path('player/<int:pk>/update/', views.PlayerUpdateView.as_view(),name="player-update"),
+    # DELETE
+    path('team/<int:pk>/delete/', views.TeamDeleteView.as_view(),name="team-delete"),
+    path('player/<int:pk>/delete/', views.PlayerDeleteView.as_view(),name="player-delete"),
 ]

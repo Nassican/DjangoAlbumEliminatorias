@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block maincontent %}
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-danger text-white">
+      <h3 class="mb-0">Eliminar Equipo</h3>
+    </div>
+    <div class="card-body">
+      <form method="post">
+        {% csrf_token %}
+        <p class="lead">
+          ¿Está seguro que desea eliminar el equipo "{{ object.name }}"?
+        </p>
+        <div class="mt-4 text-center">
+          <button type="submit" class="btn btn-danger btn-lg">
+            <i class="fas fa-trash"></i> Confirmar Eliminación
+          </button>
+          <a
+            href="{% url 'team-detail' object.pk %}"
+            class="btn btn-secondary btn-lg"
+          >
+            <i class="fas fa-times"></i> Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock maincontent %}
